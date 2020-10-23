@@ -82,26 +82,34 @@ public class SeaBattleTest {
         // 1-ый выстрел
         Assert.assertTrue(game.isMovingFirst());
         game.shot(0, 1);
-//        Assert.assertFalse(game.isMovingFirst());
         Cell.Access[] accesses = game.getAccesses(0, 1);
         Assert.assertEquals(accesses[0], Cell.Access.Alive);
         Assert.assertEquals(accesses[1], Cell.Access.Killed);
 
-        // 2-ой выстрел
-        game.shot(2, 1);
+        // 2-ой выстрел 1-го игрока (т.к. 1-ый выстрел попал)
         Assert.assertTrue(game.isMovingFirst());
-        accesses = game.getAccesses(2, 1);
-//        Assert.assertEquals(accesses[0], Cell.Access.Killed);
-//        Assert.assertEquals(accesses[1], Cell.Access.Alive);
+        game.shot(1,  2);
+        accesses = game.getAccesses(1, 2);
+        Assert.assertEquals(accesses[0], Cell.Access.Alive);
+        Assert.assertEquals(accesses[1], Cell.Access.Killed);
 
-        // дописать для случая, когда не будет совершён выстрел (Access == Alive)
+        // 3-ий выстрел
+        Assert.assertFalse(game.isMovingFirst());
+        game.shot(2, 0);
+        accesses = game.getAccesses(2, 0);
+        Assert.assertEquals(accesses[0], Cell.Access.Killed);
+        Assert.assertEquals(accesses[1], Cell.Access.Alive);
+
+        // 4-ый выстрел
+        Assert.assertTrue(game.isMovingFirst());
+        Assert.assertFalse(game.shot(0, 1));
     }
 
-//    @Test
-//    public void testShipConstructor() {
-//    }
-//
-//    @Test
-//    public void testShipContainsCell() {
-//    }
+    @Test
+    public void testShipConstructor() {
+    }
+
+    @Test
+    public void testShipContainsCell() {
+    }
 }
