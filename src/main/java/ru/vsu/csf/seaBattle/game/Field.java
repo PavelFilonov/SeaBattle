@@ -8,22 +8,9 @@ public class Field implements Drawable {
 
     private Cell[][] field;
 
-//    private Ship[] ships;
-
-//    public Field(Ship[] ships) {
-//        createFieldShips(ships);
-//    }
-
     public Field(boolean[][] boolField) {
         createField(boolField);
     }
-
-//    private void createFieldShips(Ship[] ships) {
-//        field = new Cell[10][10];
-//        for (int i = 0; i < ships.length; i++) {
-//
-//        }
-//    }
 
     private void createField(boolean[][] boolField) {
         field = new Cell[boolField.length][boolField[0].length];
